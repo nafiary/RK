@@ -12,7 +12,8 @@
 
 		<!--sidebar nav start-->
 		<ul class="nav nav-pills nav-stacked custom-nav">
-			<li class="active"><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
+			<li class="active"><a href="{{url('')}}"><i class="lnr lnr-spell-check"></i> <span>Kelola Data</span></a></li>
+			<li class="active"><a href="{{url('')}}/pOrder"><i class="lnr lnr-menu"></i> <span>Purchase Order</span></a></li>
 		</ul>
 		<!--sidebar nav end-->
 	</div>

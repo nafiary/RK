@@ -11,7 +11,21 @@
 |
 */
 
-Route::get('/', 'umum@form');
+Route::get('/', 'LogistikController@show');
+
+// UC 06
+Route::get('input', 'LogistikController@tambahBarang');
+Route::get('form/{id}', 'LogistikController@updateBarang');
+Route::get('delete/{id}', 'LogistikController@delete');
+Route::post('update', 'LogistikController@sendData');
+Route::post('store', 'LogistikController@storeData');
+// Route::get('coba', 'umum@coba');
+
+// UC 01
+Route::get('pOrder', function(){
+	return view('pages.purchase_order');
+});
+
 
 Route::get('home', 'HomeController@index');
 
