@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\items;
 use DB;
 use Response;
+use PDF;
+use Illuminate\Support\Facades\Input;
 
 class LogistikController extends Controller {
 	public function coba(){
@@ -44,8 +46,6 @@ class LogistikController extends Controller {
 		$data['items'] = items::find($id);
 		$data['supplier'] = DB::table('supplier')->get();
 		$data['kategori'] = DB::table('kategori_item')->get();
-
-		dd($data['supplier']);
 
 		return view('pages.form')->with($data);
 	}

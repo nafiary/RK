@@ -38,7 +38,7 @@ Kelola Data
 			<td>{{$n->harga}}</td>
 			<td>{{$n->stok}}</td>
 			<td>
-				<a type="button" class="btn btn-info" href="{{url('')}}/form/{{$index+1}}">Edit</a>
+				<a type="button" class="btn btn-info" href="{{url('')}}/form/{{$n->id_items}}">Edit</a>
 				<a type="button" class="btn btn-danger" href="{{url('')}}/delete/{{$n->id_items}}">Delete</a>
 			</td>
 		</tr>
