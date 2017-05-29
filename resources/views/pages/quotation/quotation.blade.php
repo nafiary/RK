@@ -5,7 +5,7 @@ Shafly <span>Administrator</span>
 @stop
 
 @section('judul')
-Purchase Order
+Quotation
 @stop
 
 @section('content')
@@ -15,11 +15,11 @@ Purchase Order
 		/*border-style: solid;*/
 	}
 </style>
-<form method="post" action="{{url('')}}/exportPO">
+<form method="post" action="{{url('')}}/exportQ">
 <div class="col-md-12" style="padding-bottom:100px;">
 	<div style="width:800px; height:1131px; margin: auto; position:relative; border-color:#8bc34a; border-style:solid">
 	<div class="col-md-12" style="margin-top: 20px">
-		<div class="col-md-4" style="float:left"><h3>Purchase Order</h3></div>
+		<div class="col-md-4" style="float:left"><h3>Quotation</h3></div>
 	</div>
 	<div class="col-md-12">
 		<div class="col-md-2" style="padding-top:6px;"><h5>Code:</h5></div>
@@ -67,18 +67,18 @@ Purchase Order
 				<tr <?php if($index%2==0) echo "class='success'"; ?>>
 					<td>{{$index}}</td>
 					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" name="{{$index}}1"></td>
-					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" name="{{$index}}2"></td>
+					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" onkeyup="sync{{$index}}()" name="{{$index}}2" id="{{$index}}2"></td>
 					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" name="{{$index}}3"></td>
-					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" name="{{$index}}4"></td>
-					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" name="{{$index}}5"></td>
-					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>"  name="{{$index}}6"></td>
+					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" onkeyup="sync{{$index}}()" name="{{$index}}4" id="{{$index}}4"></td>
+					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>" placeholder="ketik" onkeyup="sync{{$index}}()" name="{{$index}}5" id="{{$index}}5"></td>
+					<td><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8; <?php if($index%2==0) echo 'background-color:#dff0d8'; ?>"  name="{{$index}}6" id="{{$index}}6" value="0"></td>
 				</tr>
 				<?php } ?>
 			</tbody>
 			<tfoot>
 				<tr>
 					<th colspan="6">Total</th>
-					<th><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8;" name="total"></th>
+					<th><input type="text" style="width:100%; border-style:none; background-color:#f8f8f8;" id="total" name="total" onkeypress="hitung()"></th>
 				</tr>
 			</tfoot>
 		</table>
@@ -108,8 +108,6 @@ Purchase Order
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 	<div class="col-md-12" style="margin-top: 20px">
-		<div class="col-md-6"><p>Dibuat Oleh</p></div>
-		<div class="col-md-6"><p>Disetujui Oleh</p></div>
 	</div>
 </div>
 	<div style="width:800px; margin: 50px auto; position:relative;">
@@ -117,5 +115,31 @@ Purchase Order
 	</div>
 </div>
 </form>
+<script>
+	<?php
+		$index = 1;
+		for($index; $index<=8; $index++){
+	?>
+		function sync{{$index}}()
+		{
+		  var n1 = document.getElementById({{$index}}2);
+		  var n2 = document.getElementById({{$index}}4);
+		  var diskon = document.getElementById({{$index}}5);
+		  var total = document.getElementById({{$index}}6);
+		  var total2 = document.getElementById('total');
+		  total.value = n2.value * n1.value * diskon.value / 100;
+		  total2.value = parseFloat(document.getElementById('16').value)
+		  				+ parseFloat(document.getElementById('26').value)
+		  				+ parseFloat(document.getElementById('36').value)
+		  				+ parseFloat(document.getElementById('46').value)
+		  				+ parseFloat(document.getElementById('56').value)
+		  				+ parseFloat(document.getElementById('66').value)
+		  				+ parseFloat(document.getElementById('76').value)
+		  				+ parseFloat(document.getElementById('86').value);
+
+		  console.log(total2.value);
+		}
+	<?php } ?>
+</script>
 
 @stop

@@ -25,7 +25,7 @@ class LogistikController extends Controller {
 		$data['supplier'] = DB::table('supplier')->get();
 		$data['kategori'] = DB::table('kategori_item')->get();
 
-		return view('pages.form2')->with($data);
+		return view('pages.logistik.form2')->with($data);
 	}
 
 	public function storeData(Request $request){
@@ -47,7 +47,7 @@ class LogistikController extends Controller {
 		$data['supplier'] = DB::table('supplier')->get();
 		$data['kategori'] = DB::table('kategori_item')->get();
 
-		return view('pages.form')->with($data);
+		return view('pages.logistik.form')->with($data);
 	}
 
 	public function show(){
@@ -60,7 +60,7 @@ class LogistikController extends Controller {
 				->paginate(6);
 
 		// dd($barang);
-		return view('pages.keloladata', ['items' => $barang]);
+		return view('pages.logistik.keloladata', ['items' => $barang]);
 	}
 
 	public function delete($id){

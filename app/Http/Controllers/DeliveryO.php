@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\Input;
 
-class PurchaseOrder extends Controller
+class DeliveryO extends Controller
 {
-	public function show(){
-		return view('pages.po.purchase_order');
+    public function show(){
+		return view('pages.deliveryO.deliveryO');
 	}
 
 	public function export(){
@@ -35,7 +35,7 @@ class PurchaseOrder extends Controller
 		$data['total'] = Input::Get('total');
 		// dd($data);
 
-	    $pdf = PDF::loadView('pages.po.form_purchase_order', compact('data'))->setPaper('a4', 'potrait');
+	    $pdf = PDF::loadView('pages.deliveryO.form_deliveryO', compact('data'))->setPaper('a4', 'potrait');
  
     	return $pdf->stream();
 	}
